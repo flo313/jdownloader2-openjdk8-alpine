@@ -22,8 +22,8 @@ echo
 
 # mkdir /jdownloader
 
-addgroup -g ${USER_UID} ${USER_NAME}
-adduser -D -u ${USER_UID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME}
+addgroup -g ${USER_UID} ${USER_NAME} 2>/dev/null
+adduser -D -u ${USER_UID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME} 2>/dev/null
 
 # Set directory permissions.
 printf "Setting permissions... "
