@@ -28,6 +28,7 @@ echo "$(ts) [DONE]"
 # Set directory permissions.
 echo "$(ts) Setting permissions... "
 chown -R ${USER_NAME}: /jdownloader /downloads
+chmod -R 755 /downloads
 # chown ${USER_NAME}: /media
 # chmod a+wx /jdownloader/JDownloader.jar
 echo "$(ts) [DONE]"
