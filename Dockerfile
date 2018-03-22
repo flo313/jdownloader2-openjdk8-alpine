@@ -1,6 +1,6 @@
 FROM openjdk:8-alpine
 
-ENV USER_UID="1000" \
+ENV USER_ID="1000" \
     USER_NAME="jd2"
 
  ADD start_jd2.sh /start_jd2.sh
