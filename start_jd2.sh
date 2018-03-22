@@ -5,33 +5,17 @@ function ts {
   echo "[`date '+%Y-%m-%d %T'`] monitor.sh:"
 }
 
-# Display settings on standard out.
-
-#USER_NAME="jdownloader"
-echo "$(ts) ===================="
-echo "$(ts) JDownloader settings"
-echo "$(ts) ===================="
-echo
-echo "$(ts)   User:      ${USER_NAME}"
-echo "$(ts)   UID:       ${USER_UID}"
-echo
-
-
 # mkdir /jdownloader
-echo "$(ts) Create group if needed..."
-addgroup -g ${USER_UID} ${USER_NAME} 2>/dev/null
-echo "$(ts) [DONE]"
-echo "$(ts) Create user if needed..."
-adduser -D -u ${USER_UID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME} 2>/dev/null
-echo "$(ts) [DONE]"
+echo "$(ts) Create group ${USER_NAME} (id ${USER_ID}) if needed..."
+addgroup -g ${USER_ID} ${USER_NAME} 2>/dev/null
+echo "$(ts) Create user ${USER_NAME} (id ${USER_ID}) if needed..."
+adduser -D -u ${USER_ID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME} 2>/dev/null
 
 # Set directory permissions.
-echo "$(ts) Setting permissions... "
-chown -R ${USER_NAME}: /jdownloader /downloads
+echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader and /downloads..."
+chown -R ${USER_NAME}:${USER_NAME} /jdownloader /downloads
+echo "$(ts) Set permissions of /downloads to 755..."
 chmod -R 755 /downloads
-# chown ${USER_NAME}: /media
-# chmod a+wx /jdownloader/JDownloader.jar
-echo "$(ts) [DONE]"
 
 # Finally, start JDownloader.
 echo "$(ts) Starting JDownloader..."
