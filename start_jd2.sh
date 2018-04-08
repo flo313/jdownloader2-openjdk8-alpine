@@ -15,7 +15,7 @@ adduser -D -u ${USER_ID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME}
 echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader and /downloads..."
 chown -R ${USER_NAME}:${USER_NAME} /jdownloader /downloads
 echo "$(ts) Set permissions of /downloads to 755..."
-chmod -R 755 /downloads
+chmod -R u+rwx /downloads
 
 # Finally, start JDownloader.
 echo "$(ts) Starting JDownloader..."
