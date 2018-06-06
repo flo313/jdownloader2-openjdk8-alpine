@@ -7,7 +7,7 @@ ENV USER_ID="1000" \
 
 RUN \
 # Update Bash and add su-exec and wget
-	apk add --no-cache bash su-exec wget \
+	apk add --no-cache bash sudo su-exec wget \
 	
 # Download Jdownloader
 	&& mkdir /jdownloader \
