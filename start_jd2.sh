@@ -2,18 +2,26 @@
 set -e
 
 function ts {
-  echo "[`date '+%Y-%m-%d %T'`] monitor.sh:"
+  echo "[`date '+%Y-%m-%d %T'`] `basename "$(test -L "$0" && readlink "$0" || echo "$0")"`:"
 }
 
 # mkdir /jdownloader
 echo "$(ts) Create group ${USER_NAME} (id ${USER_ID}) if needed..."
-addgroup -g ${USER_ID} ${USER_NAME} 2>/dev/null
+cat /etc/group | grep ${USER_NAME} >/dev/null 2>&1
+if [ $? = 1 ] ; then
+   addgroup -g ${USER_ID} ${USER_NAME} 2>/dev/null
+fi
 echo "$(ts) Create user ${USER_NAME} (id ${USER_ID}) if needed..."
-adduser -D -u ${USER_ID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME} 2>/dev/null
+cat /etc/passwd | grep ${USER_NAME} >/dev/null 2>&1
+if [ $? = 1 ] ; then
+    adduser -D -u ${USER_ID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME} 2>/dev/null
+fi
 
 # Set directory permissions.
 #echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader and /downloads..."
 #chown -R ${USER_NAME}:${USER_NAME} /jdownloader /downloads
+echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader..."
+chown -R ${USER_NAME}:${USER_NAME} /jdownloader
 #echo "$(ts) Set permissions of /downloads to 755..."
 #chmod -R u+rwx /downloads
 
