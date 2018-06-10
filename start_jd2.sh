@@ -1,6 +1,4 @@
 #!/bin/sh
-set -e
-
 function ts {
   echo "[`date '+%Y-%m-%d %T'`] `basename "$(test -L "$0" && readlink "$0" || echo "$0")"`:"
 }
@@ -20,13 +18,13 @@ fi
 # Set directory permissions.
 #echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader and /downloads..."
 #chown -R ${USER_NAME}:${USER_NAME} /jdownloader /downloads
-echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader..."
-chown -R ${USER_NAME}:${USER_NAME} /jdownloader
+#echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader..."
+#chown -R ${USER_NAME}:${USER_NAME} /jdownloader
 #echo "$(ts) Set permissions of /downloads to 755..."
 #chmod -R u+rwx /downloads
 
 echo "$(ts) Check user write access on folders (user: ${USER_NAME} id ${USER_ID})"
-for dir in /downloads; do
+for dir in /downloads /jdownloader ; do
   echo "$(ts)    Check $dir..."
   if sudo su - $USER_NAME -c "[ -w $dir ]" ; then 
     echo "$(ts)    Write access to $dir -> OK"
