@@ -14,7 +14,7 @@ RUN \
 	
 # Cleaning
 	&& apk del wget \
-	&& rm -rf /tmp/* /var/cache/apk/* /var/lib/apk/lists/* \
+	&& rm -rf /tmp/* /var/cache/apk/* /var/lib/apk/lists/*
 
 ADD start_jd2.sh /start_jd2.sh
 
