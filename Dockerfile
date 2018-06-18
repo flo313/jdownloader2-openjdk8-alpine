@@ -10,7 +10,7 @@ RUN \
 # Download Jdownloader
 	&& mkdir /jdownloader \
 	&& wget -O /jdownloader/JDownloader.jar --progress=bar:force http://installer.jdownloader.org/JDownloader.jar \
-	&& java -Djava.awt.headless=true -jar /jdownloader/JDownloader.jar -update \
+	&& java -Djava.awt.headless=true -jar /jdownloader/JDownloader.jar -update -norestart \
 	
 # Cleaning
 	&& apk del wget \
