@@ -17,6 +17,11 @@ if [ $? = 1 ] ; then
     adduser -D -u ${USER_ID} -G ${USER_NAME} -s /bin/sh -h /jdownloader ${USER_NAME} 2>/dev/null
 fi
 
+echo "$(ts) Set user ${USER_NAME} (id ${USER_ID}) owner of /jdownloader..."
+chown -R ${USER_NAME}:${USER_NAME} /jdownloader
+echo "$(ts) Set access for ${USER_NAME} (id ${USER_ID}) on /jdownloader..."
+chmod -R +rwx /jdownloader
+
 echo "$(ts) Check user write access on folders (user: ${USER_NAME} id ${USER_ID})"
 for dir in /downloads /jdownloader ; do
   echo "$(ts)    Check $dir..."
