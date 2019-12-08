@@ -3,7 +3,7 @@ FROM openjdk:8-alpine
 ENV USER_ID="1000" \
     USER_NAME="jd2" \
     JDDIR="/jdownloarder" \
-    JDJARFULLNAME="${JDDIR}/JDownloader.jar"
+    JDJARFULLNAME="$JDDIR/JDownloader.jar"
 
 RUN \
 # Update Bash and add su-exec and wget
