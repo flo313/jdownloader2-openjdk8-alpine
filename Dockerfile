@@ -26,7 +26,7 @@ RUN	chmod +x /start_jd2.sh
 VOLUME /jdownloader/cfg
 
 
-# HEALTHCHECK --interval=30s --timeout=3s \
-  CMD ps -o args | grep "java -Djava.awt.headless=true -jar ${JDJARFULLNAME}" >/dev/null || exit 1
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD jps -l | grep "${JDJARFULLNAME}" >/dev/null || exit 1
 
 CMD ["/start_jd2.sh"]
