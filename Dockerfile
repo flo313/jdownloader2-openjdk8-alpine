@@ -25,6 +25,6 @@ VOLUME /jdownloader/cfg
 
 
 # HEALTHCHECK --interval=30s --timeout=3s \
-  CMD curl -f http://localhost:3129/ || exit 1
+  CMD ps -C java >/dev/null || exit 1
 
 CMD ["/start_jd2.sh"]
