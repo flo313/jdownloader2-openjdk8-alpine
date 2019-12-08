@@ -38,6 +38,8 @@ done
 echo "$(ts) Starting JDownloader..."
 #exec su -pc "exec java -Djava.awt.headless=true -jar /jdownloader/JDownloader.jar 2>&1 >/dev/null" $USER_NAME
 chmod +x /jdownloader/JDownloader.jar
+wget -O /jdownloader/JDownloader.jar --progress=bar:force http://installer.jdownloader.org/JDownloader.jar
+
 exec su -pc "exec java -Djava.awt.headless=true -jar /jdownloader/JDownloader.jar" $USER_NAME
 
 #while sleep 3600; do :; done
