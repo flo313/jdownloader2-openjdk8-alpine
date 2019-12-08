@@ -36,14 +36,13 @@ done
 
 # Finally, start JDownloader.
 echo "$(ts) Starting JDownloader..."
-JARFFULLNAME="/jdownloader/JDownloader.jar"
 #exec su -pc "exec java -Djava.awt.headless=true -jar /jdownloader/JDownloader.jar 2>&1 >/dev/null" $USER_NAME
-if [ -f "$JARFFULLNAME" ]; then
-    echo "$(ts) $JARFFULLNAME already exist"
+if [ -f "$JDJARFULLNAME" ]; then
+    echo "$(ts) ${JDJARFULLNAME} already exist"
 else
-    wget -O $JARFFULLNAME --progress=bar:force http://installer.jdownloader.org/JDownloader.jar
+    wget -O $JDJARFULLNAME --progress=bar:force http://installer.jdownloader.org/JDownloader.jar
 fi
-chmod +x $JARFFULLNAME
-exec su -pc "exec java -Djava.awt.headless=true -jar $JARFFULLNAME" $USER_NAME
+chmod +x $JDJARFULLNAME
+exec su -pc "exec java -Djava.awt.headless=true -jar $JDJARFULLNAME" $USER_NAME
 
 #while sleep 3600; do :; done
