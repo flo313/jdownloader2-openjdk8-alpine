@@ -23,4 +23,8 @@ RUN	chmod +x /start_jd2.sh
 
 VOLUME /jdownloader/cfg
 
+
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:3129/ || exit 1
+
 CMD ["/start_jd2.sh"]
