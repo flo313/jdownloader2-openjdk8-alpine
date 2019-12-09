@@ -26,7 +26,6 @@ RUN	chmod +x /start_jd2.sh
 VOLUME /jdownloader/cfg
 
 
-HEALTHCHECK --interval=5m --timeout=3s \
-  CMD jps -l | grep "${JDJARFULLNAME}" >/dev/null || exit 1
+# HEALTHCHECK --interval=5m --timeout=3s CMD jps -l | grep "${JDJARFULLNAME}" >/dev/null || exit 1
 
 CMD ["/start_jd2.sh"]
