@@ -40,7 +40,7 @@ echo "$(ts) Starting JDownloader..."
 if [ -f "$JDJARFULLNAME" ]; then
     echo "$(ts) ${JDJARFULLNAME} already exist"
 else
-    wget -O $JDJARFULLNAME --progress=bar:force http://installer.jdownloader.org/JDownloader.jar
+    wget -O $JDJARFULLNAME http://installer.jdownloader.org/JDownloader.jar
 fi
 chmod +x $JDJARFULLNAME
 exec su -pc "exec java -Djava.awt.headless=true -jar $JDJARFULLNAME" $USER_NAME
